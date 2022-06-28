@@ -1,3 +1,51 @@
+const display = document.querySelector('#display')
+const userScoreDisplay = document.querySelector('#userScore')
+const compScoreDisplay = document.querySelector('#compScore')
+const userChoiceDisplay = document.querySelector('#userChoice')
+const compChoiceDisplay = document.querySelector('#compChoice')
+const game = document.querySelector('#game')
+let playerScore = 0;
+let computerScore = 0;
+function startGame(){
+    document.location.reload(true)
+    display.innerText = "FIGHT!!!!"
+}
+function playerChoice(value){
+    let playerSelection = value
+    let computerSelection = computerPlay()
+    let playerChoice = value
+    let computerChoice = computerPlay()
+    playRound(playerSelection, computerSelection)
+    if(playRound(playerSelection, computerSelection) === true){
+        playerScore += 1
+        userScoreDisplay.innerText = playerScore
+        console.log(`playerScore is ${playerScore}, computerScore is ${computerScore}`)
+    }else if (playRound(playerSelection, computerSelection) === false){
+        computerScore += 1
+        compScoreDisplay.innerText = computerScore
+        console.log(`computerScore is ${computerScore}, playerScore is ${playerScore}`)
+    }else if(playRound(playerSelection, computerSelection) === 'IT\'S A TIE'){
+        playerScore = playerScore
+        computerScore = computerScore
+        console.log(`scores are ${playerScore} ${computerScore}`)
+    }
+    choiceDisplay(playerChoice, computerChoice)
+    if(playerScore === 5 || computerScore === 5){
+        if (playerScore > computerScore){
+            display.innerText = "WINNER"
+        }else{
+            display.innerText = "You loose"
+        }
+        window.playerChoice=function(){return false;};
+        game.style.display='block'
+        game.innerText="Replay"
+        game.style.backgroundColor='rgba(14, 214, 164, 0.815)'
+        game.style.color='white'
+        game.style.padding='15px'
+        game.style.border='none'
+        game.style.borderRadius='5px'
+    }
+}
 function computerPlay(min = 1, max = 3) {
     randomValue = Math.floor(Math.random() * (max - min + 1) + min)
     //return randomValue
@@ -12,93 +60,46 @@ function computerPlay(min = 1, max = 3) {
         return "SCISSORS";
     }
 }
-
 function playRound(playerSelection , computerSelection) {
-    if ((playerSelection === 'ROCK' && computerSelection === 'ROCK') || (computerSelection === 'PAPER' && playerSelection === 'PAPER') || (computerSelection === 'SCISSORS' && playerSelection === 'SCISSORS')) {
-        console.log("Its a tie")
+    if (playerSelection === computerSelection){
+        display.innerText = "Its a tie"
         return "IT'S A TIE"
     }
     if(playerSelection === 'ROCK' && computerSelection === 'PAPER'){
-        console.log("You loose...paper covers rock")
+        display.innerText = "You loose...paper covers rock"
         return false
     } else if(playerSelection === 'PAPER' && computerSelection === 'ROCK'){
-        console.log("You win... paper covers rock")
+        display.innerText="You win... paper covers rock"
         return true
     } else if (playerSelection === 'SCISSORS' && computerSelection === 'PAPER'){
-        console.log("You win............scissors cuts paper")
+        display.innerText="You win............scissors cuts paper"
         return true
     }else if(playerSelection === 'PAPER' && computerSelection === 'SCISSORS'){
-        console.log("you loose... scissors cuts paper")
+        display.innerText="you loose... scissors cuts paper"
         return false
     }else if (playerSelection === 'ROCK' && computerSelection === 'SCISSORS'){
-        console.log("You win... rock crushes scissors")
+        display.innerText="You win... rock crushes scissors"
         return true
     }else if(playerSelection === 'SCISSORS' && computerSelection === 'ROCK'){
-        console.log("You loose....rock crushes scissors")
+        display.innerText="You loose....rock crushes scissors"
         return false
     }
 }
-
-/*function game(){
-    let playerScore = 0;
-    let computerScore = 0;
-    do{
-        const playerSelection = prompt("ROCK ? PAPAER ? SCISSORS?").toUpperCase();
-        const computerSelection = computerPlay();
-        playRound(playerSelection, computerSelection)
-        if(playRound(playerSelection, computerSelection) === true){
-            playerScore += 1
-            console.log(`playerScore is ${playerScore}, computerScore is ${computerScore}`)
-        }else if (playRound(playerSelection, computerSelection) === false){
-            computerScore += 1
-            console.log(`computerScore is ${computerScore}, playerScore is ${playerScore}`)
-        }else if(playRound(playerSelection, computerSelection) === 'IT\'S A TIE'){
-            playerScore = playerScore
-            computerScore = computerScore
-            console.log(`scores are ${playerScore} ${computerScore}`)
-        }
+function choiceDisplay(playerChoice, computerChoice){
+    if(playerChoice === 'ROCK'){
+        userChoiceDisplay.innerHTML = '✊'
+    }else if(playerChoice === 'PAPER'){
+        userChoiceDisplay.innerHTML = '✋'
+    }else if(playerChoice === 'SCISSORS'){
+        userChoiceDisplay.innerHTML = '✌'
     }
-    while(playerScore < 5 || computerScore < 5);
-    console.log(playerScore , computerScore)
-    if (playerScore > computerScore){
-        console.log("You win")
-    }else{
-        console.log("You loose")
+    if(computerChoice === 'ROCK'){
+        compChoiceDisplay.innerHTML = '✊'
+    }else if(computerChoice === 'PAPER'){
+        compChoiceDisplay.innerHTML = '✋'
+    }else if(computerChoice === 'SCISSORS'){
+        compChoiceDisplay.innerHTML = '✌'
     }
-}*/
-function game(){
-    let playerScore = 0;
-    let computerScore = 0;
-    while (true){
-        const playerSelection = prompt("ROCK ? PAPAER ? SCISSORS?").toUpperCase();
-        const computerSelection = computerPlay();
-        playRound(playerSelection, computerSelection)
-        if(playRound(playerSelection, computerSelection) === true){
-            playerScore += 1
-            console.log(`playerScore is ${playerScore}, computerScore is ${computerScore}`)
-        }else if (playRound(playerSelection, computerSelection) === false){
-            computerScore += 1
-            console.log(`computerScore is ${computerScore}, playerScore is ${playerScore}`)
-        }else if(playRound(playerSelection, computerSelection) === 'IT\'S A TIE'){
-            playerScore = playerScore
-            computerScore = computerScore
-            console.log(`scores are ${playerScore} ${computerScore}`)
-        }
-       if(playerScore === 5 || computerScore === 5){
-        break;
-       }
-    }
-    console.log(playerScore , computerScore)
-    if (playerScore > computerScore){
-        console.log("You win")
-    }else{
-        console.log("You loose")
-    }
-    /*else if (playerScore < computerScore){
-        console.log("You Loose")
-    }else{
-        console.log("ITS A TIE")
-        game()
-    }*/
-} 
-game()
+    userChoiceDisplay.style.fontSize= '20px'
+    compChoiceDisplay.style.fontSize= '20px'
+}

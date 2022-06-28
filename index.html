@@ -4,10 +4,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="rps.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./rps.js" defer></script>
+    <script src="https://kit.fontawesome.com/8a914abcab.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
-    
+    <div class="container">
+        <div class="item">
+            <h1 class="header">ROCK PAPER SCISSORS GAME</h1>
+        </div>
+        <div>
+            <h2 class="technologies">HTML | CSS | JAVASCRIPT</h2>
+        </div>
+        <div class="choices">
+            <div>
+                <span id="userChoice"></span>
+            </div>
+            <div>
+                <span id="compChoice"></span>
+            </div>
+        </div>
+        <div class="item">
+            <div class="displaying" id="display"></div>
+        </div>
+        <div class="display-cont item">
+            <div class="disp-item style">YOU </div>
+            <div class="disp-item score"><span id="userScore">0</span> </div>
+            <div class="disp-item"><span>-</span></div>
+            <div class="disp-item score"><span id="compScore">0</span> </div>
+            <div class="disp-item style"> COMP</div>
+        </div>
+        <div class="item btn">
+            <div class="btn-item"><button class="btng" onclick="playerChoice('ROCK')" value="ROCK"><i class="fa-solid fa-hand-back-fist fa-2xl"></i></button></div>
+            <div class="btn-item"><button class="btng" onclick="playerChoice('PAPER')"value="PAPER"><i class="fa-solid fa-hand fa-2xl"></i></button></div>
+            <div class="btn-item"><button class="btng" onclick="playerChoice('SCISSORS')" value="SCISSORS"><i class="fa-solid fa-hand-scissors fa-2xl"></i></button></div>
+        </div>
+        <div>
+            <button class="play" onclick="startGame()" id="game"><i class="fa-solid fa-play fa-2xl"></i></button>
+        </div>
+    </div>
 </body>
 </html>

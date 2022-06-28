@@ -1,0 +1,81 @@
+body{
+    background-color: #2c3e50;
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*margin-top: 10px;*/
+}
+.header{
+    background-color: white;
+    color: #2c3e50;
+    padding: 20px;
+}
+div.display-cont{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+.btng{
+    border-radius: 50%;
+    border: none;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    background-color: rgba(14, 214, 164, 0.815);
+}
+.style{
+    background-color: rgb(250, 37, 84);
+    padding: 5px;
+    color: white;
+    font-size: 30px;
+    border: none;
+    border-radius: 5px;
+}
+.score{
+    font-size: 30px;
+}
+.technologies{
+    color: white;
+    font-size: xx-large;
+}
+.item{
+    padding: 8px;
+}
+.btn{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+}
+.btn-item{
+    margin: 10px;
+}
+.fa-solid{
+    color: white;
+}
+.displaying{
+    color: white;
+    font-size: 50px;
+    padding: 30px;
+}
+.play{
+    background-color: #2c3e50;
+    border-radius: 5px;
+    border: none;
+}
+#game{
+    display: none;
+}
+.choices{
+    display: flex;
+    gap: 50px;
+}
