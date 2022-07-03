@@ -79,3 +79,11 @@ div.display-cont{
     display: flex;
     gap: 50px;
 }
+#game.replay{
+    display: block;
+    background-color: rgba(14, 214, 164, 0.815);
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+}

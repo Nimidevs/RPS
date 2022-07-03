@@ -4,11 +4,20 @@ const compScoreDisplay = document.querySelector('#compScore')
 const userChoiceDisplay = document.querySelector('#userChoice')
 const compChoiceDisplay = document.querySelector('#compChoice')
 const game = document.querySelector('#game')
+let buttons = document.querySelectorAll('.btng')
 let playerScore = 0;
 let computerScore = 0;
+
 function startGame(){
-    document.location.reload(true)
+    playerScore = 0;
+    computerScore = 0;
+    userScoreDisplay.innerText = playerScore
+    compScoreDisplay.innerText = computerScore
     display.innerText = "FIGHT!!!!"
+    buttons.forEach(button => {
+        button.setAttribute('onclick', 'playerChoice(value)')
+    })
+    game.classList.remove('replay')
 }
 function playerChoice(value){
     let playerSelection = value
@@ -36,19 +45,15 @@ function playerChoice(value){
         }else{
             display.innerText = "You loose"
         }
-        window.playerChoice=function(){return false;};
-        game.style.display='block'
+        buttons.forEach(button => {
+            button.removeAttribute('onclick')
+        })
+        game.classList.add('replay');
         game.innerText="Replay"
-        game.style.backgroundColor='rgba(14, 214, 164, 0.815)'
-        game.style.color='white'
-        game.style.padding='15px'
-        game.style.border='none'
-        game.style.borderRadius='5px'
     }
 }
 function computerPlay(min = 1, max = 3) {
     randomValue = Math.floor(Math.random() * (max - min + 1) + min)
-    //return randomValue
     if (randomValue === 1) {
         console.log("ROCK")
         return "ROCK";
